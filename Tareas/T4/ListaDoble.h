@@ -13,7 +13,7 @@ class ListaDoble
         void InsertarPrimero(char c);
         void Mostrar();
         void EliminarUltimo();
-        void Buscar(string s);
+        bool Buscar(string s);
 
     protected:
 

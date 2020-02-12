@@ -52,36 +52,45 @@ void ListaDoble::EliminarUltimo()
     cantidad--;
 }
 
-void ListaDoble::Buscar(string s)
+bool ListaDoble::Buscar(string s)
 {
-    int largo = 0;
-    largo = s.length();
-
+    cout<<"Palabra a buscar " << s << endl;
+    int largo = s.length();
     char palabra[largo];
     strcpy(palabra,s.c_str()); ///Pasamos la palabra de string a char
     bool encontrado = false;
     Nodo *aux = Primero;
-    Nodo *aux2 = aux;
     if(largo>cantidad)
-        cout<<"Palabra demasiado grande"<<endl;
-    else if (aux!=0)
     {
-        if((aux->letra == palabra[0]))
-        {
-            for(int i = 1; i < largo; i++)
-            {
-                aux2 = aux2->sig;
-                encontrado = (aux2->letra == palabra[i]);
-            }
-            if(encontrado = true)
-                cout<<"Palabra encontrada, primera letra "<< aux->letra;
-        }
-        else
-            aux = aux->sig;
+        cout<<"Palabra demasiado grande"<<endl;
+        return false;
     }
     else
-        cout<<"Palabra no encontrada"<<endl;
-
+    {
+        while(aux!=0)
+        {
+            cout<< "comparando letra de la lista " << aux->letra << " Con la letra " << palabra[0] << endl;
+            Nodo *aux2 = aux;
+            if((aux->letra == palabra[0]))
+            {
+                encontrado = true;
+                while(encontrado = true)
+                {
+                    cout<< "letra de la lista " << aux->letra << "coincide con " << palabra[0] << endl;
+                    for(int i = 1; i < largo; i++)
+                    {
+                        aux2 = aux2->sig;
+                        encontrado = (aux2->letra = palabra[i]);
+                        cout<< encontrado << " Con letra " << aux2->letra << palabra[i]<< endl;
+                    }
+                    cout<<"Palabra encontrada, primera letra "<< aux->letra<< endl;
+                    return true;
+                }
+            }
+            else
+                aux = aux->sig;
+        }
+    }
 
 }
 
